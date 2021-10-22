@@ -3,46 +3,64 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
-        int choice = 0;
+        char use = 'Y';
+        Library user = new Library();
 
-        while( choice != 3 ) {
-            System.out.println( "Enter 1 for module 1 \nEnter 2 for module 2 \n" );
-            choice = sc.nextInt();
-            sc.nextLine();
+        while (use == 'y' || use == 'Y' ){
+            System.out.println("*********Library Management System ************");
+            System.out.println("Press 1 to add new Book");
+            System.out.println("Press 2 to issue Book");
+            System.out.println("Press 3 to return Book");
+            System.out.println("Press 4 to Print detains of books ");
+            System.out.println("Press 5 to exit");
 
-            if( choice == 1 )  {
-                Module1 obj = new Module1();
+            System.out.println("Enter any Number");
+            int n = sc.nextInt();
 
-                System.out.println("Enter Name of Student ");
-                String name = sc.nextLine();
-
-                System.out.println("Enter father name");
-                String fatherName = sc.nextLine();
-
-                System.out.println("Enter university id ");
-                String uni_id = sc.nextLine();
-
-                System.out.println("Enter user id ");
-                String uid = sc.nextLine();
-
-                System.out.println("Enter sem");
-                int sem = sc.nextInt();
-
-                obj.getData(name , fatherName , uni_id , uid, sem );
-
-                obj.printData();
+            switch (n) {
+                case 1:
+                    System.out.println("Enter Book name ");
+                    sc.nextLine();
+                    String book = sc.nextLine();
+//                    System.out.println("Enter id");
+//                    int id = sc.nextInt();
+                    user.addNewBook( book );
+                    break;
+                case 2:
+                    System.out.println("Enter Book name ");
+                    sc.nextLine();
+                    String book1 = sc.nextLine();
+//                    System.out.println("Enter id");
+//                    int id1 = sc.nextInt();
+                    user.issueBook(book1);
+                    break;
+                case 3:
+                    System.out.println("Enter Book name ");
+                    sc.nextLine();
+                    String book2 = sc.nextLine();
+//                    System.out.println("Enter id");
+//                    int id2 = sc.nextInt();
+                    user.returnBook( book2 );
+                    break;
+                case 4:
+                    user.printBooksAvailable();
+                    sc.nextLine();
+                    break;
+                case 5:
+                    user.exit();
+                    break;
+                default:
+                    System.out.println("Invalid num");
+                    sc.nextLine();
 
 
             }
-            else if ( choice == 2 ) {
-                Module2 obj = new Module2();
-                obj.chemistry();
-                obj.physics();
-                obj.python();
-            }
+            System.out.println("Enter y or n to continue or stop");
+
+            use = sc.nextLine().charAt(0);
+
 
         }
     }
